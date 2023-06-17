@@ -16,16 +16,16 @@ I'm going to talk about how to implement one using Azure Bicep and maintain it. 
 
 ## My Plan of Attack
 
-> Start by creating an Azure DevOps repository where you will manage your Bicep modules and associated files. This repository will serve as the central location for version control and collaboration.
+- Start by creating an Azure DevOps repository where you will manage your Bicep modules and associated files. This repository will serve as the central location for version control and collaboration.
 
-> Use Azure Bicep, a domain-specific language for deploying Azure resources, to define and deploy your ACR instance. With Bicep, you can declaratively specify the desired state of your resources. This ensures consistent and repeatable deployments of your container registry.
+- Use Azure Bicep, a domain-specific language for deploying Azure resources, to define and deploy your ACR instance. With Bicep, you can declaratively specify the desired state of your resources. This ensures consistent and repeatable deployments of your container registry.
 
-> Within the same repository, create a dedicated folder, such as "modules," to store all your Bicep modules. This approach helps maintain a centralized and organized structure for your modules, making it easier to manage and track changes.
+- Within the same repository, create a dedicated folder, such as "modules," to store all your Bicep modules. This approach helps maintain a centralized and organized structure for your modules, making it easier to manage and track changes.
 
-> Create a folder structure inside the modules folder to organize your modules. For example, you can create a versioned folder structure like "module/v1/<module>/<module>.bicep." This structure allows you to manage different versions of each module while keeping them easily accessible.
+- Create a folder structure inside the modules folder to organize your modules. For example, you can create a versioned folder structure like "module/v1/<module>/<module>.bicep." This structure allows you to manage different versions of each module while keeping them easily accessible.
 
-> To upload the Bicep files into ACR, you can leverage a PowerShell script. This script should iterate through the modules folder, locate the Bicep files, and use the Azure CLI or Azure PowerShell module to push the Bicep files to your ACR instance. This process ensures that the latest versions of your Bicep modules are available in the registry for deployment.
+- To upload the Bicep files into ACR, you can leverage a PowerShell script. This script should iterate through the modules folder, locate the Bicep files, and use the Azure CLI or Azure PowerShell module to push the Bicep files to your ACR instance. This process ensures that the latest versions of your Bicep modules are available in the registry for deployment.
 
-> Create an Azure DevOps pipeline to automate the execution of the PowerShell script. Configure the pipeline to trigger on changes to the modules folder or any other desired event. This pipeline will ensure that the script runs automatically, keeping your ACR up-to-date with the latest Bicep module versions.
+- Create an Azure DevOps pipeline to automate the execution of the PowerShell script. Configure the pipeline to trigger on changes to the modules folder or any other desired event. This pipeline will ensure that the script runs automatically, keeping your ACR up-to-date with the latest Bicep module versions.
 
 I believe by following these steps, you can establish a seamless workflow for maintaining and deploying Bicep modules using Azure Container Registry. This approach allows you to version control your modules, keep them organized within a single repository, and leverage PowerShell scripts to automate the process of uploading the Bicep files into ACR.
