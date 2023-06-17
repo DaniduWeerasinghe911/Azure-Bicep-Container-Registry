@@ -1,0 +1,103 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "nsgName": {
+      "value": "example-dev-nsg"
+    },
+    "securityRules": {
+      "value": [
+        {
+          "name": "AZ_Allow_Inbound_AzureMgt_App_Any_Any",
+          "properties": {
+            "protocol": "*",
+            "sourcePortRange": "*",
+            "destinationPortRange": "*",
+            "sourceAddressPrefix": "168.63.129.161",
+            "destinationAddressPrefix": "10.16.16.0/26",
+            "access": "Allow",
+            "priority": 100,
+            "direction": "Inbound"
+          }
+        },
+        {
+          "name": "AZ_Allow_Inbound_AzureLB_Any_Any_Any",
+          "properties": {
+            "protocol": "*",
+            "sourcePortRange": "*",
+            "destinationPortRange": "*",
+            "sourceAddressPrefix": "AzureLoadBalancer",
+            "destinationAddressPrefix": "*",
+            "access": "Allow",
+            "priority": 101,
+            "direction": "Inbound"
+          }
+        },
+        {
+          "name": "AZ_Allow_Inbound_App_App_Any_Any",
+          "properties": {
+            "protocol": "*",
+            "sourcePortRange": "*",
+            "destinationPortRange": "*",
+            "sourceAddressPrefix": "10.16.16.0/26",
+            "destinationAddressPrefix": "10.216.16.0/26",
+            "access": "Allow",
+            "priority": 102,
+            "direction": "Inbound"
+          }
+        },
+        {
+          "name": "AZ_Allow_Inbound_ShdVnet_App_Any_Any",
+          "properties": {
+            "protocol": "*",
+            "sourcePortRange": "*",
+            "destinationPortRange": "*",
+            "sourceAddressPrefix": "10.0.0.0/16",
+            "destinationAddressPrefix": "10.16.16.0/26",
+            "access": "Allow",
+            "priority": 103,
+            "direction": "Inbound"
+          }
+        },
+        {
+          "name": "AZ_Deny_Inbound_Any_Any_Any_Any",
+          "properties": {
+            "protocol": "*",
+            "sourcePortRange": "*",
+            "destinationPortRange": "*",
+            "sourceAddressPrefix": "*",
+            "destinationAddressPrefix": "*",
+            "access": "Deny",
+            "priority": 999,
+            "direction": "Inbound"
+          }
+        }
+      ]
+    },
+    "tags": {
+      "value": {
+        "Purpose": "Sample Bicep Tempalte",
+        "Environment": "Development",
+        "Owner": "sample.user@arinco.com.au"
+      }
+    },
+    "enableResourceLock": {
+      "value": false
+    },
+    "diagSettings": {
+      "value": {  // Set to empty object if not using
+        "name": "diag-log",
+        "workspaceId": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourcegroups/example-dev-rg/providers/microsoft.operationalinsights/workspaces/example-dev-log",  // Set to empty string if not using
+        "storageAccountId": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourcegroups/example-dev-rg/providers/microsoft.storage/storageAccounts/exampledevst",       // Set to empty string if not using
+        "eventHubAuthorizationRuleId": "Endpoint=sb://example-dev-ehns.servicebus.windows.net/;SharedAccessKeyName=DiagnosticsLogging;SharedAccessKey=xxxxxxxxx;EntityPath=example-hub-namespace",  // Set to empty string if not using
+        "eventHubName": "KeyVaultDiagnotics",
+        "enableLogs": true,
+        "enableMetrics": false,
+        "retentionPolicy": {    
+          "days": 0,
+          "enabled": false
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "value": "AustraliaEast"
+    },
+    "aseName": {
+      "value": "prod-syd-ase"
+    },
+    "internalLoadBalancingMode": {
+      "value": "Web, Publishing"
+    },
+    "kind": {
+      "value": "ASEVX"
+    },
+    "virtualNetworkid": {
+      "value": "/subscriptions/xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/prod-syd-rgp/providers/Microsoft.Network/virtualNetworks/prd-syd-vnw01"
+    },
+    "subnetName": {
+      "value": "ase"
+    }
+  }
+}

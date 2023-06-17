@@ -1,0 +1,131 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "frontDoorName": {
+      "value": "example-gbl-fd"
+    },
+    "frontendEndpoints": {
+      "value": [
+        {
+          "name": "example-frontend",
+          "properties": {
+            "hostName": "frontend.example.com.au",
+            "sessionAffinityEnabledState": "Disabled"
+          }
+        }
+      ]
+    },
+    "loadBalancingSettings": {
+      "value": [
+        {
+          "name": "example-lbsettings",
+          "properties": {
+            "sampleSize": 4,
+            "successfulSamplesRequired": 2,
+            "additionalLatencyMilliseconds": 0
+          }
+        }
+      ]
+    },
+    "healthProbeSettings": {
+      "value": [
+        {
+          "name": "example-hpsettings",
+          "properties": {
+            "path": "/",
+            "protocol": "Http",
+            "intervalInSeconds": 120,
+            "resourceState": "Enabled"
+          }
+        }
+      ]
+    },
+    "backendPools": {
+      "value": [
+        {
+          "name": "example-backend-pool",
+          "properties": {
+            "backends": [
+              {
+                "address": "backend1.example.com",
+                "backendHostHeader": "backend1.example.com",
+                "httpPort": 80,
+                "httpsPort": 443,
+                "weight": 50,
+                "priority": 1,
+                "enabledState": "Enabled"
+              }
+            ],
+            "loadBalancingSettings": "example-lbsettings" ,
+            "healthProbeSettings": "example-hpsettings"
+          }
+        }
+      ]
+    },
+    "forwardingRoutingRules": {
+      "value": [
+        {
+          "name": "example-forwading-route",
+          "properties": {
+            "frontendEndpointName": "example-frontend",
+            "acceptedProtocols": [
+              "Http",
+              "Https"
+            ],
+            "patternsToMatch": [
+              "/*"
+            ],
+            "routeConfiguration": {
+              "forwardingProtocol": "MatchRequest",
+              "backendPool": "example-backend-pool",
+              "customForwardingPath": {},  // To do: provide example.  Use {} if not needed.
+              "cacheConfiguration": {}     // To do: provide example.  Use {} if not needed.
+            },
+            "enabledState": "Enabled"
+          }
+        }
+      ]
+    },
+    "redirectRoutingRules": {
+      "value": [
+        {
+          "name": "example-redirect-route",
+          "properties": {
+            "frontendEndpointName": "example-frontend",
+            "acceptedProtocols": [
+              "Http",
+              "Https"
+            ],
+            "patternsToMatch": [
+              "/*"
+            ],
+            "routeConfiguration": {
+              "redirectProtocol": "HttpsOnly",
+              "redirectType": "Moved"
+            },
+            "enabledState": "Enabled"
+          }
+        }
+      ]
+    },
+    "enableResourceLock": {
+      "value": false
+    },
+    "diagSettings": {
+      "value": {
+        "name": "diag-log",
+        "workspaceId": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourcegroups/example-rg/providers/microsoft.operationalinsights/workspaces/example-log",
+        "storageAccountId": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourcegroups/example-dev-rg/providers/microsoft.storage/storageAccounts/exampledevst",       // Set to empty string if not using
+        "eventHubAuthorizationRuleId": "Endpoint=sb://example-dev-ehns.servicebus.windows.net/;SharedAccessKeyName=DiagnosticsLogging;SharedAccessKey=xxxxxxxxx;EntityPath=example-hub-namespace",  // Set to empty string if not using
+        "eventHubName": "FrontdoorDiagnostics",
+        "enableLogs": true,
+        "enableMetrics": false,
+        "retentionPolicy": {    
+          "days": 0,
+          "enabled": false
+        }
+      }
+    }   
+  }
+}

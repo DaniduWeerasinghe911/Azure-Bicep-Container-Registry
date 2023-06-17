@@ -1,0 +1,24 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "resourceName": {
+      "value": "example-dev-kv"
+    },
+    "location": {
+      "value": "AustraliaEast"
+    },
+    "id": {
+      "value": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourcegroups/example-dev-rg/providers/Microsoft.KeyVaults/vaults/example-dev-kv"
+    },
+    "subnetId": {
+      "value": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourcegroups/example-dev-rg/providers/Microsoft.Network/virtualNetworks/example-dev-vnet/subnets/example-subnet"
+    },
+    "dnsZoneResourceGroup": {
+      "value": "example-dev-rg"
+    },
+    "dnsZoneSubscriptionId": {
+      "value": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+    }
+  }
+}

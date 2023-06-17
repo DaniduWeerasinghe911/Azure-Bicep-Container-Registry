@@ -1,0 +1,139 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vnetName": {
+      "value": "dev-net"
+    },
+    "addressPrefixes": {
+      "value": [
+        "10.10.0.0/16"
+      ]
+    },
+    "dhcpOptions": {
+      "value": {
+        "dnsServers": [
+          "192.168.0.1",
+          "192.168.0.2"
+        ]
+      }
+    },
+    "subnets": {
+      "value": [
+        {
+          "name": "AzureBastionSubnet",
+          "addressPrefix": "10.10.0.0/24",
+          "networkSecurityGroup": null,
+          "routeTable": null,
+          "privateEndpointNetworkPolicies": "Enabled",
+          "privateLinkServiceNetworkPolicies": "Enabled",
+          "serviceEndpoints": [],
+          "serviceEndpointPolicies": [],
+          "delegations": []
+        },
+        {
+          "name": "AzureWAFSubnet",
+          "addressPrefix": "10.10.1.0/24",
+          "networkSecurityGroup": null,
+          "routeTable": null,
+          "privateEndpointNetworkPolicies": "Enabled",
+          "privateLinkServiceNetworkPolicies": "Enabled",
+          "serviceEndpoints": [],
+          "serviceEndpointPolicies": [],
+          "delegations": []
+        },
+        {
+          "name": "AzureFirewallSubnet",
+          "addressPrefix": "10.10.2.0/24",
+          "networkSecurityGroup": null,
+          "routeTable": null,
+          "privateEndpointNetworkPolicies": "Enabled",
+          "privateLinkServiceNetworkPolicies": "Enabled",
+          "serviceEndpoints": [],
+          "serviceEndpointPolicies": [],
+          "delegations": []
+        },
+        {
+          "name": "AzureFirewallManagementSubnet",
+          "addressPrefix": "10.10.3.0/24",
+          "networkSecurityGroup": null,
+          "routeTable": null,
+          "privateEndpointNetworkPolicies": "Enabled",
+          "privateLinkServiceNetworkPolicies": "Enabled",
+          "serviceEndpoints": [],
+          "serviceEndpointPolicies": [],
+          "delegations": []
+        },
+        {
+          "name": "AzureDevopsSubnet",
+          "addressPrefix": "10.10.4.0/24",
+          "networkSecurityGroup": null,
+          "routeTable": null,
+          "privateEndpointNetworkPolicies": "Enabled",
+          "privateLinkServiceNetworkPolicies": "Enabled",
+          "serviceEndpoints": [],
+          "serviceEndpointPolicies": [],
+          "delegations": []
+        },
+        {
+          "name": "GatewaySubnet",
+          "addressPrefix": "10.10.5.0/24",
+          "networkSecurityGroup": null,
+          "routeTable": null,
+          "privateEndpointNetworkPolicies": "Enabled",
+          "privateLinkServiceNetworkPolicies": "Enabled",
+          "serviceEndpoints": [],
+          "serviceEndpointPolicies": [],
+          "delegations": []
+        },
+        {
+          "name": "CoreServices",
+          "addressPrefix": "10.10.6.0/24",
+          "networkSecurityGroup": null,
+          "routeTable": null,
+          "privateEndpointNetworkPolicies": "Enabled",
+          "privateLinkServiceNetworkPolicies": "Enabled",
+          "serviceEndpoints": [],
+          "serviceEndpointPolicies": [],
+          "delegations": []
+        },
+        {
+          "name": "PrivateEndpoints",
+          "addressPrefix": "10.10.7.0/24",
+          "networkSecurityGroup": null,
+          "routeTable": null,
+          "privateEndpointNetworkPolicies": "Disabled",
+          "privateLinkServiceNetworkPolicies": "Enabled",
+          "serviceEndpoints": [],
+          "serviceEndpointPolicies": [],
+          "delegations": []
+        }
+      ]
+    },
+    "tags": {
+      "value": {
+        "Purpose": "Sample Bicep Tempalte",
+        "Environment": "Development",
+        "Owner": "sample.user@arinco.com.au"
+      }
+    },
+    "enableResourceLock": {
+      "value": false
+    },
+    "diagSettings": {
+      "value": { // Set to empty object if not using
+        "name": "diag-log",
+        "workspaceId": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourcegroups/example-dev-rg/providers/microsoft.operationalinsights/workspaces/example-dev-log", // Set to empty string if not using
+        "storageAccountId": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourcegroups/example-dev-rg/providers/microsoft.storage/storageAccounts/exampledevst", // Set to empty string if not using
+        "eventHubAuthorizationRuleId": "Endpoint=sb://example-dev-ehns.servicebus.windows.net/;SharedAccessKeyName=DiagnosticsLogging;SharedAccessKey=xxxxxxxxx;EntityPath=example-hub-namespace", // Set to empty string if not using
+        "eventHubName": "KeyVaultDiagnotics",
+        "enableLogs": true,
+        "enableMetrics": false,
+        "retentionPolicy": {
+          "days": 0,
+          "enabled": false
+        }
+      }
+    }
+  }
+}
